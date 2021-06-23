@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_pos/routes/pos_routes.dart';
+import 'package:test_pos/app/routes/pos_routes.dart';
 
 class PosDrawer extends StatelessWidget {
   const PosDrawer({Key? key}) : super(key: key);

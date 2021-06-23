@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_pos/routes/pos_pages.dart';
-import 'package:test_pos/routes/pos_routes.dart';
+import 'package:test_pos/app/routes/pos_pages.dart';
+import 'package:test_pos/app/routes/pos_routes.dart';
 
-import 'modules/home/home_binding.dart';
-import 'modules/home/home_page.dart';
+import 'app/modules/home/home_binding.dart';
+import 'app/modules/home/home_page.dart';
 
 void main() {
   runApp(GetMaterialApp(
@@ -13,7 +13,6 @@ void main() {
     initialRoute: Routes.HOME,
     // theme: appThemeData,
     defaultTransition: Transition.fade,
-    // initialBinding: HomeBinding(),
     getPages: AppPages.pages,
     home: HomePage(),
   ));

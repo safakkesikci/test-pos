@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_pos/global_widgets/pos_drawer.dart';
+import 'package:test_pos/app/global_widgets/pos_drawer.dart';
 
 import 'customer_controller.dart';
 
