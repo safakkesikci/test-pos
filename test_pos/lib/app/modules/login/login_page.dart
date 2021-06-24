@@ -24,7 +24,7 @@ class LoginPage extends GetView<LoginController> {
                     height: 20,
                   ),
                   Text(
-                    "Era POS",
+                    "Test POS",
                     style: TextStyle(fontSize: 20, color: Colors.black87),
                   ),
                   SizedBox(
