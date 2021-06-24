@@ -10,7 +10,7 @@ void main() {
   runApp(GetMaterialApp(
     navigatorKey: Get.key,
     debugShowCheckedModeBanner: false,
-    initialRoute: Routes.HOME,
+    initialRoute: Routes.LOGIN,
     // theme: appThemeData,
     defaultTransition: Transition.fade,
     getPages: AppPages.pages,
