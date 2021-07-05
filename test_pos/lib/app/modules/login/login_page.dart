@@ -98,6 +98,7 @@ class LoginPage extends GetView<LoginController> {
                         style: TextStyle(fontSize: 14, color: Colors.white),
                       ),
                       onPressed: () {
+                        FocusScope.of(context).unfocus();
                         if (controller.checkLogin()) {
                           Get.back();
                           Get.offNamed(Routes.HOME);
