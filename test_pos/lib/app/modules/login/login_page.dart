@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_pos/app/modules/login/login_controller.dart';
+import 'package:test_pos/app/routes/pos_routes.dart';
 
 class LoginPage extends GetView<LoginController> {
   @override
@@ -25,7 +26,7 @@ class LoginPage extends GetView<LoginController> {
                   ),
                   Text(
                     "Test POS",
-                    style: TextStyle(fontSize: 20, color: Colors.black87),
+                    style: TextStyle(fontSize: 40, color: Colors.black87),
                   ),
                   SizedBox(
                     height: 20,
@@ -50,24 +51,33 @@ class LoginPage extends GetView<LoginController> {
                   SizedBox(
                     height: 16,
                   ),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      labelText: "Password",
-                      prefixIcon: Icon(Icons.lock),
-                    ),
-                    keyboardType: TextInputType.visiblePassword,
-                    obscureText: true,
-                    controller: controller.passwordController,
-                    onSaved: (value) {
-                      controller.password = value!;
-                    },
-                    validator: (value) {
-                      return controller.validatePassword(value!);
-                    },
-                  ),
+                  Obx(() => TextFormField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          labelText: "Password",
+                          prefixIcon: Icon(Icons.lock),
+                          suffixIcon: IconButton(
+                            icon: Icon(controller.isPasswordVisible.value
+                                ? Icons.visibility
+                                : Icons.visibility_off),
+                            onPressed: () {
+                              controller.isPasswordVisible.value =
+                                  !controller.isPasswordVisible.value;
+                            },
+                          ),
+                        ),
+                        keyboardType: TextInputType.visiblePassword,
+                        obscureText: !controller.isPasswordVisible.value,
+                        controller: controller.passwordController,
+                        onSaved: (value) {
+                          controller.password = value!;
+                        },
+                        validator: (value) {
+                          return controller.validatePassword(value!);
+                        },
+                      )),
                   SizedBox(
                     height: 16,
                   ),
@@ -84,11 +94,14 @@ class LoginPage extends GetView<LoginController> {
                         padding: MaterialStateProperty.all(EdgeInsets.all(14)),
                       ),
                       child: Text(
-                        "Login",
+                        "Sign In",
                         style: TextStyle(fontSize: 14, color: Colors.white),
                       ),
                       onPressed: () {
-                        controller.checkLogin();
+                        if (controller.checkLogin()) {
+                          Get.back();
+                          Get.offNamed(Routes.HOME);
+                        }
                       },
                     ),
                   ),

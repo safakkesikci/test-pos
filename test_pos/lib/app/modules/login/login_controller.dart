@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_pos/app/routes/pos_routes.dart';
 
 class LoginController extends GetxController {
   final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
@@ -8,6 +7,7 @@ class LoginController extends GetxController {
   late TextEditingController emailController, passwordController;
   var email = '';
   var password = '';
+  var isPasswordVisible = false.obs;
   @override
   void onInit() {
     super.onInit();
@@ -40,13 +40,12 @@ class LoginController extends GetxController {
     return null;
   }
 
-  void checkLogin() {
+  bool checkLogin() {
     final isValid = loginFormKey.currentState!.validate();
     if (!isValid) {
-      return;
+      return false;
     }
     loginFormKey.currentState!.save();
-    Get.back();
-    Get.offNamed(Routes.HOME);
+    return true;
   }
 }

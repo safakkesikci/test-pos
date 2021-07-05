@@ -53,7 +53,7 @@ class PosDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.exit_to_app),
             title: Text('Logout'),
-            onTap: () => {Get.back()},
+            onTap: () => {Get.back(), Get.offNamed(Routes.LOGIN)},
           ),
         ],
       ),
