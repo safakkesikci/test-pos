@@ -42,7 +42,7 @@ class LoginPage extends GetView<LoginController> {
                     keyboardType: TextInputType.emailAddress,
                     controller: controller.emailController,
                     onSaved: (value) {
-                      controller.email = value!;
+                      controller.userModel.userName = value!;
                     },
                     validator: (value) {
                       return controller.validateEmail(value!);
@@ -72,7 +72,7 @@ class LoginPage extends GetView<LoginController> {
                         obscureText: !controller.isPasswordVisible.value,
                         controller: controller.passwordController,
                         onSaved: (value) {
-                          controller.password = value!;
+                          controller.userModel.password = value!;
                         },
                         validator: (value) {
                           return controller.validatePassword(value!);

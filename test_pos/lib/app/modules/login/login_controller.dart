@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:test_pos/app/data/model/user.dart';
 
 class LoginController extends GetxController {
   final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
   late TextEditingController emailController, passwordController;
-  var email = '';
-  var password = '';
+  UserModel userModel =
+      UserModel(userName: 'pos.test.user@gmail.com', password: '123456');
+
   var isPasswordVisible = false.obs;
   @override
   void onInit() {
     super.onInit();
     emailController = TextEditingController();
     passwordController = TextEditingController();
+    emailController.text = userModel.userName!;
+    passwordController.text = userModel.password!;
   }
 
   @override
