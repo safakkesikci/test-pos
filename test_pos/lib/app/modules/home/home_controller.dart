@@ -9,6 +9,8 @@ class HomeController extends GetxController {
 
   late TextEditingController searchController;
 
+  var isSearchMode = false.obs;
+
   final _obj = ''.obs;
   set obj(value) => this._obj.value = value;
   get obj => this._obj.value;
@@ -23,5 +25,9 @@ class HomeController extends GetxController {
   void onClose() {
     super.onClose();
     searchController.dispose();
+  }
+
+  void searchClick() {
+    if (isSearchMode.value) searchController.clear();
   }
 }
