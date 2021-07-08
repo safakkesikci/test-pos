@@ -11,7 +11,7 @@ void main() {
     navigatorKey: Get.key,
     debugShowCheckedModeBanner: false,
     initialRoute: Routes.LOGIN,
-    // theme: appThemeData,
+    //theme: appThemeData,
     defaultTransition: Transition.fade,
     getPages: AppPages.pages,
     home: HomePage(),
