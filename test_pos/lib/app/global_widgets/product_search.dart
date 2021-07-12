@@ -105,7 +105,7 @@ class ProductSearchApi {
     return [
       ProductSearchModel(
           productName: 'Kazak',
-          productIcon: Icons.ballot_outlined,
+          productIcon: Icons.checkroom,
           price: 80.99,
           stockData: '5 varyant'),
       ProductSearchModel(
@@ -114,20 +114,10 @@ class ProductSearchApi {
           price: 45.00,
           stockData: ''),
       ProductSearchModel(
-          productName: 'Bere',
-          productIcon: Icons.bedroom_baby_outlined,
-          price: 35.99,
-          stockData: '2 varyant'),
-      ProductSearchModel(
           productName: 'Tshirt',
           productIcon: Icons.blender_outlined,
           price: 70.99,
           stockData: '7 varyant'),
-      ProductSearchModel(
-          productName: 'Çorap',
-          productIcon: Icons.checkroom,
-          price: 20.00,
-          stockData: '')
     ];
   }
 }
