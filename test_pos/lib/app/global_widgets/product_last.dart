@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ProductSearch extends StatelessWidget {
-  const ProductSearch({Key? key}) : super(key: key);
+class ProductLast extends StatelessWidget {
+  const ProductLast({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var api = Get.put(ProductSearchApi());
-    var rep = Get.put(ProductSearchRepository(api));
-    var controller = Get.put(ProductSearchController(rep));
+    var api = Get.put(ProductLastApi());
+    var rep = Get.put(ProductLastRepository(api));
+    var controller = Get.put(ProductLastController(rep));
     var products = controller.getSoldProducts();
     return Column(
       children: [
@@ -81,39 +81,39 @@ class ProductSearch extends StatelessWidget {
   }
 }
 
-class ProductSearchController extends GetxController {
-  final ProductSearchRepository repository;
-  ProductSearchController(this.repository);
+class ProductLastController extends GetxController {
+  final ProductLastRepository repository;
+  ProductLastController(this.repository);
 
-  List<ProductSearchModel> getSoldProducts() {
+  List<ProductLastModel> getSoldProducts() {
     return repository.getSoldProducts();
   }
 }
 
-class ProductSearchRepository {
-  final ProductSearchApi api;
+class ProductLastRepository {
+  final ProductLastApi api;
 
-  ProductSearchRepository(this.api);
+  ProductLastRepository(this.api);
 
-  List<ProductSearchModel> getSoldProducts() {
+  List<ProductLastModel> getSoldProducts() {
     return api.getSoldProducts();
   }
 }
 
-class ProductSearchApi {
-  List<ProductSearchModel> getSoldProducts() {
+class ProductLastApi {
+  List<ProductLastModel> getSoldProducts() {
     return [
-      ProductSearchModel(
+      ProductLastModel(
           productName: 'Kazak',
           productIcon: Icons.checkroom,
           price: 80.99,
           stockData: '5 varyant'),
-      ProductSearchModel(
+      ProductLastModel(
           productName: 'Atkı',
           productIcon: Icons.bed,
           price: 45.00,
           stockData: ''),
-      ProductSearchModel(
+      ProductLastModel(
           productName: 'Tshirt',
           productIcon: Icons.blender_outlined,
           price: 70.99,
@@ -122,12 +122,12 @@ class ProductSearchApi {
   }
 }
 
-class ProductSearchModel {
+class ProductLastModel {
   IconData? productIcon;
   String? productName;
   double? price;
   String? stockData;
 
-  ProductSearchModel(
+  ProductLastModel(
       {this.productName, this.productIcon, this.price, this.stockData});
 }

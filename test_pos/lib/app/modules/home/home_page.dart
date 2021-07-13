@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_pos/app/global_widgets/pos_drawer.dart';
-import 'package:test_pos/app/global_widgets/product_search.dart';
+import 'package:test_pos/app/global_widgets/product_last.dart';
 import 'package:test_pos/app/modules/home/wigets/HomeActionMenu.dart';
 
 import 'home_controller.dart';
@@ -64,7 +64,7 @@ class HomePage extends GetView<HomeController> {
             ),
             Expanded(
               child: controller.isSearchMode.value
-                  ? ProductSearch()
+                  ? ProductLast()
                   : Column(
                       children: [
                         Expanded(child: HomeActionMenu()),
