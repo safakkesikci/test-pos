@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+enum SearchMode { None, Empty, Searching }
+
 class HomeController extends GetxController {
 // final HomeRepository repository;
 // HomeController(this.repository);
@@ -9,7 +11,8 @@ class HomeController extends GetxController {
 
   late TextEditingController searchController;
 
-  var isSearchMode = false.obs;
+  var searchMode = SearchMode.None.obs;
+  //var isSearchMode = false.obs;
 
   final _obj = ''.obs;
   set obj(value) => this._obj.value = value;
@@ -27,7 +30,22 @@ class HomeController extends GetxController {
     searchController.dispose();
   }
 
-  void searchClick() {
-    if (isSearchMode.value) searchController.clear();
+  void searchBackClick() {
+    if (searchMode.value != SearchMode.None) searchController.clear();
+  }
+
+  void onSearchEditFocusChange(bool hasFocus) {
+    searchMode.value = hasFocus ? SearchMode.Empty : SearchMode.None;
+    if (!hasFocus) searchController.clear();
+  }
+
+  void onSearchEditValidation(String value) {
+    if (value.isEmpty) return;
+
+    //searchMode.value = value.isEmpty ? SearchMode.Empty : SearchMode.Searching;
+  }
+
+  void onSearchEditChanged(String value) {
+    searchMode.value = value.isEmpty ? SearchMode.Empty : SearchMode.Searching;
   }
 }

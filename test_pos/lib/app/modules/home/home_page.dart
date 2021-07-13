@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_pos/app/global_widgets/pos_drawer.dart';
 import 'package:test_pos/app/global_widgets/product_last.dart';
+import 'package:test_pos/app/global_widgets/product_search.dart';
 import 'package:test_pos/app/modules/home/wigets/HomeActionMenu.dart';
 
 import 'home_controller.dart';
@@ -35,11 +36,12 @@ class HomePage extends GetView<HomeController> {
                           ),
                           labelText: "Product Name, SKU, Barcode",
                           prefixIcon: IconButton(
-                            icon: Icon(controller.isSearchMode.value
-                                ? Icons.arrow_back_outlined
-                                : Icons.search),
+                            icon: Icon(
+                                controller.searchMode.value == SearchMode.None
+                                    ? Icons.search
+                                    : Icons.arrow_back_outlined),
                             onPressed: () {
-                              controller.searchClick();
+                              controller.searchBackClick();
                               FocusScope.of(context).unfocus();
                             },
                           ),
@@ -51,11 +53,20 @@ class HomePage extends GetView<HomeController> {
                         keyboardType: TextInputType.visiblePassword,
                         obscureText: false,
                         controller: controller.searchController,
-                        onSaved: (value) {},
-                        validator: (value) {},
+                        onSaved: (value) {
+                          print('onSave');
+                        },
+                        validator: (value) {
+                          print('onvalid ${value!}');
+                          controller.onSearchEditValidation(value);
+                        },
+                        onChanged: (value) {
+                          print('onchanged ' + value);
+                          controller.onSearchEditChanged(value);
+                        },
                       ),
                       onFocusChange: (hasFocus) {
-                        controller.isSearchMode.value = hasFocus;
+                        controller.onSearchEditFocusChange(hasFocus);
                       },
                     )
                   ],
@@ -63,27 +74,31 @@ class HomePage extends GetView<HomeController> {
               ),
             ),
             Expanded(
-              child: controller.isSearchMode.value
+              child: controller.searchMode.value == SearchMode.Empty
                   ? ProductLast()
-                  : Column(
-                      children: [
-                        Expanded(child: HomeActionMenu()),
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Align(
-                            alignment: AlignmentDirectional.bottomCenter,
-                            child: SizedBox(
-                              width: double.infinity,
-                              height: 50,
-                              child: ElevatedButton(
-                                child: Text('SHOPPING CART'),
-                                onPressed: () {},
+                  : (controller.searchMode.value == SearchMode.None
+                      ? Column(
+                          children: [
+                            Expanded(child: HomeActionMenu()),
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Align(
+                                alignment: AlignmentDirectional.bottomCenter,
+                                child: SizedBox(
+                                  width: double.infinity,
+                                  height: 50,
+                                  child: ElevatedButton(
+                                    child: Text('SHOPPING CART'),
+                                    onPressed: () {},
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                      ],
-                    ),
+                          ],
+                        )
+                      : ProductSearch(
+                          filter: controller.searchController.text,
+                        )),
             ),
           ]),
         ),
