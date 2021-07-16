@@ -53,15 +53,11 @@ class HomePage extends GetView<HomeController> {
                         keyboardType: TextInputType.visiblePassword,
                         obscureText: false,
                         controller: controller.searchController,
-                        onSaved: (value) {
-                          print('onSave');
-                        },
+                        onSaved: (value) {},
                         validator: (value) {
-                          print('onvalid ${value!}');
-                          controller.onSearchEditValidation(value);
+                          controller.onSearchEditValidation(value!);
                         },
                         onChanged: (value) {
-                          print('onchanged ' + value);
                           controller.onSearchEditChanged(value);
                         },
                       ),
@@ -97,7 +93,7 @@ class HomePage extends GetView<HomeController> {
                           ],
                         )
                       : ProductSearch(
-                          filter: controller.searchController.text,
+                          filter: controller.searchString.value,
                         )),
             ),
           ]),

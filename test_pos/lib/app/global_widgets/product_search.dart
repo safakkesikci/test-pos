@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ProductSearch extends StatelessWidget {
+class ProductSearch extends GetView<ProductSearchController> {
   const ProductSearch({Key? key, this.filter}) : super(key: key);
 
   final filter;
 
   @override
   Widget build(BuildContext context) {
-    var api = Get.put(ProductSearchApi());
-    var rep = Get.put(ProductSearchRepository(api));
-    var controller = Get.put(ProductSearchController(rep));
+    var controller = Get.find<ProductSearchController>();
     var products = controller.getProducts(filter);
     return Column(
       children: [

@@ -6,9 +6,7 @@ class ProductLast extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var api = Get.put(ProductLastApi());
-    var rep = Get.put(ProductLastRepository(api));
-    var controller = Get.put(ProductLastController(rep));
+    var controller = Get.find<ProductLastController>();
     var products = controller.getSoldProducts();
     return Column(
       children: [

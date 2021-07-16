@@ -14,6 +14,8 @@ class HomeController extends GetxController {
   var searchMode = SearchMode.None.obs;
   //var isSearchMode = false.obs;
 
+  var searchString = ''.obs;
+
   final _obj = ''.obs;
   set obj(value) => this._obj.value = value;
   get obj => this._obj.value;
@@ -47,5 +49,6 @@ class HomeController extends GetxController {
 
   void onSearchEditChanged(String value) {
     searchMode.value = value.isEmpty ? SearchMode.Empty : SearchMode.Searching;
+    searchString.value = value;
   }
 }
