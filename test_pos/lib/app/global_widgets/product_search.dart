@@ -113,6 +113,11 @@ class ProductSearchApi {
           productIcon: Icons.blender_outlined,
           price: 70.99,
           stockData: '7 varyant'),
+      ProductSearchModel(
+          productName: 'Kaban',
+          productIcon: Icons.bedroom_baby_outlined,
+          price: 249.99,
+          stockData: '7 varyant'),
     ];
   }
 }
